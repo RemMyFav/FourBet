@@ -6,6 +6,10 @@ export class CardController extends Component {
     @property
     private card_face: number;
 
+    protected onLoad(): void {
+        console.log(this.card_face);
+        this._name = "card" + this.card_face;
+    }
     start() {
     }
 

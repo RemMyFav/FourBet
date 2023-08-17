@@ -9,7 +9,11 @@ export class DeckController extends Component {
     private options: number[] = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8 ,8, 9, 9, 9, 9]
     private readonly normalCardNum: 36;
     // private readonly specialCardNum: 4;
+    protected onLoad(): void {
+        this._name = "deck"
+    }
     start() {
+        
     }
 
     update(deltaTime: number) {
