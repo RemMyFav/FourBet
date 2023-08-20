@@ -49,7 +49,6 @@ export class matchController extends Component {
         const drSize = view.getDesignResolutionSize();
         deckNode.setPosition(drSize.width/ 2, drSize.height / 2)
         const deckComponent: DeckController = deckNode.addComponent(DeckController);
-        deckComponent.generateCards();
         this.node.addChild(deckNode)
         this._deck = deckComponent;
     }
