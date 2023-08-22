@@ -8,11 +8,11 @@ export class CardController extends Component {
     private card_face: number;
 
     protected onLoad(): void {
-        console.log(this.card_face);
+        // this.node.name = "CARD" + this.card_face;
         this._name = "card" + this.card_face;
         resources.load("image/cardback/spriteFrame", SpriteFrame, (err, spriteFrame) => {
             // Load cardback image
-            let matchSprite: Sprite = addComponentNoDup(this.node, Sprite);
+            const matchSprite: Sprite = addComponentNoDup(this.node, Sprite);
             matchSprite.spriteFrame = spriteFrame;
             matchSprite.type = Sprite.Type.SIMPLE;
             // Calculate the scale and adaptively modify the scale
