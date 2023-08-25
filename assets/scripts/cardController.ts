@@ -10,6 +10,9 @@ export class CardController extends Component {
     protected onLoad(): void {
         // this.node.name = "CARD" + this.card_face;
         this._name = "card" + this.card_face;
+        /** 
+         * Add a sprite component to matchNode and set the sprite.spriteFrame to image cardback.png as cardback
+        */
         resources.load("image/cardback/spriteFrame", SpriteFrame, (err, spriteFrame) => {
             // Load cardback image
             const matchSprite: Sprite = addComponentNoDup(this.node, Sprite);
