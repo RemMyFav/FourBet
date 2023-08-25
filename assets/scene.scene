@@ -173,7 +173,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 439.44289693593316,
+    "_orthoHeight": 425.18105849582173,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -318,13 +318,12 @@
     "__type__": "a8896WweJ5BuqDLPt4V2OCL",
     "_name": "",
     "_objFlags": 0,
-    "__editorExtras__": {},
     "node": {
       "__id__": 5
     },
     "_enabled": true,
     "__prefab": null,
-    "_id": "01xExlb9BJvZQiFVrlhXSz"
+    "_id": "f30SBXNpBOfZSggGx7ZWXu"
   },
   {
     "__type__": "cc.UITransform",
