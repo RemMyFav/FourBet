@@ -8,10 +8,12 @@ const { ccclass, property } = _decorator;
 export class DeckController extends Component {
     @property
     private cards: Node[];
+    private handSize: number;
     private options: number[] = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8 ,8, 9, 9, 9, 9]
     private readonly normalCardNum: 36;
     // private readonly specialCardNum: 4;
     onLoad(): void {
+        this.handSize = 3;
         resources.load("image/ferrule/spriteFrame", SpriteFrame, (err, spriteFrame) => {
             // Load cardback image
             let matchSprite: Sprite = addComponentNoDup(this.node, Sprite);
@@ -63,8 +65,8 @@ export class DeckController extends Component {
         let count = 0;
         for (let i = 0; i < seat.length; i++) {
             const handcars: Node[] = [];
-            for (let j = 0; j < 3; j++){
-                const index = i * 3 + j;
+            for (let j = 0; j < this.handSize; j++){
+                const index = i * this.handSize + j;
                 handcars.push(this.cards[index]);
                 copy.splice(index, 1);
                 count += 1;
@@ -117,5 +119,9 @@ export class DeckController extends Component {
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
         }
         return shuffled;
+    }
+
+    getHandSize(): number{
+        return this.handSize;
     }
 }

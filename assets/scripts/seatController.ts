@@ -18,6 +18,8 @@ export class SeatController extends Component {
     setCard(cards: Node[]): void{
         this.hand = cards;
     }
-    
+    getCards(): Node[]{
+        return this.hand;
+    }
 }
 

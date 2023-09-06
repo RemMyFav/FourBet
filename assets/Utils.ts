@@ -24,4 +24,39 @@ class MyEvent extends Event {
     public detail: any = null;  // Custom property
 }
 
-export { addComponentNoDup , MyEvent}
+/**
+ * This is the TYPE of ones hand card, a hand card should have
+ * format of val + type. Such as 3 pair means a pair of 3,
+ * 4 three kind means a three kind of 4, 5 nothing means 5 is 
+ * the biggest, 6 flush means hand card with 6, 7, 8
+ * type attribute: pair, three kind, flush, nothing
+ * val attribute
+ */
+type HandType = {
+    type: String;
+    val: number;
+    level: number;
+}
+
+class ThreeKind implements HandType {
+    type = "three kind";
+    val = 0;
+    level = 3;
+}
+class Flush implements HandType {
+    type = "flush";
+    val = 0;
+    level = 2;
+}
+class Pair implements HandType {
+    type = "pair";
+    val = 0;
+    level = 1;
+}
+class HighCard implements HandType {
+    type = "high card";
+    val = 0;
+    level = 0;
+}
+export { addComponentNoDup, MyEvent, Pair, ThreeKind, Flush, HighCard };
+export type {HandType}

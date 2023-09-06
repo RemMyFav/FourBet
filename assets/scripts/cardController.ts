@@ -35,5 +35,9 @@ export class CardController extends Component {
         this.card_face = num
         return this.card_face
     }
+
+    getCardFace(): number{
+        return this.card_face;
+    }
 }
 
