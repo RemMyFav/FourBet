@@ -40,47 +40,58 @@ export class DeckController extends Component {
         
     }
 
-    /**
-     * When MATCH begins this method is the begining of what the DECK suppose to do
-     * @param seat The array of SEATs that this MATCH has
-     */
-    public async deckBegin(seat: Node[]): Promise<void>{
-        this.dealCard(seat).then((seat) => {
-            console.log(seat)
-        }).catch((err) => {
-            console.log(err);
-        })
-        return await new Promise((resolve, reject) => {
-            resolve();
-        })
-    }
+    // /**
+    //  * When MATCH begins this method is the begining of what the DECK suppose to do
+    //  * @param seat The array of SEATs that this MATCH has
+    //  */
+    // public deckBegin(seat: Node[]): Promise<void>{
+    //     this.dealCard(seat).then((seat) => {
+    //         console.log(seat)
+    //     }).catch((err) => {
+    //         console.log(err);
+    //     })
+    //     return new Promise((resolve, reject) => {
+    //         resolve();
+    //     })
+    // }
 
     /**
      * This this the method used to deal CARDs to every SEAT
      * @param seat The array of SEATs that this MATCH has
      * @returns 
      */
-    private async dealCard(seat: Node[]): Promise<void>{
+    public async dealCard(seat: Node[]): Promise<number>{
         let copy = this.cards.slice();
         let count = 0;
         for (let i = 0; i < seat.length; i++) {
-            const handcars: Node[] = [];
-            for (let j = 0; j < this.handSize; j++){
-                const index = i * this.handSize + j;
-                handcars.push(this.cards[index]);
-                copy.splice(index, 1);
-                count += 1;
-            }
-            seat[i].getComponent(SeatController).setCard(handcars);
+            const handcards = await this.promiseDealCard(copy, i);
+            // console.log(handcards)
+            seat[i].getComponent(SeatController).setCard(handcards);
+            count += handcards.length
         }
-        return await new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             // check if the number of CARDs that has being dealed is correct
             if (copy.length !== (this.options.length - count)) {
                 reject(new Error("Card number left in deck is not correct"));
             }
-            resolve();
+            console.log("done")
+            resolve(count);
         });
     }
+    
+    private promiseDealCard(seat: Node[], i: number): Promise<Node[]>{
+        const handcars: Node[] = [];
+        for (let j = 0; j < this.handSize; j++){
+            const index = i * this.handSize + j;
+            handcars.push(this.cards[index]);
+            seat.splice(index, 1);
+        }
+        return new Promise((resolve, reject) => {
+            // check if the number of CARDs that has being dealed is correct
+            resolve(handcars);
+            });
+        }
+    
 
     /**
      * Generate all CARDs for the DECK, the CARDs can be modified depending on the game
